@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ContactInfo from './ContactInfo.js';
 import ContactDetails from './ContactDetails.js';
+import update from 'react-addons-update'
 
 export default class Contact extends Component {
 
@@ -26,6 +27,9 @@ export default class Contact extends Component {
 
     this._handleChange=this._handleChange.bind(this);
     this._handleClick=this._handleClick.bind(this);
+    this._handleCreate=this._handleCreate.bind(this);
+    this._handleRemove=this._handleRemove.bind(this);
+    this._handleEdit=this._handleEdit.bind(this);
   }
 
   _handleChange(e){
@@ -40,6 +44,36 @@ export default class Contact extends Component {
     });
 
     console.log(key);
+  }
+
+  _handleCreate(contact) {
+    this.setState({
+      contactData : update(this.state.contactData,
+        { $push : [contact]}
+      )
+    });
+  }
+
+  _handleRemove(){
+    this.setState({
+      contactData : update(this.state.contactData,
+        {$splice: [[this.state.selectedKey,1]]}
+      ),
+      selectedKey:-1
+    });
+  }
+
+  _handleEdit(name,phone){
+    this.setState({
+      contactData: update(this.state.contactData,
+        {
+          [this.state.selectedKey]:{
+            name:{$set:name},
+            phone:{$set:phone}
+          }
+        }
+      )
+    });
   }
 
 
