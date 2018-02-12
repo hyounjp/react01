@@ -33,6 +33,25 @@ export default class Contact extends Component {
     this._handleEdit=this._handleEdit.bind(this);
   }
 
+  componentWillMount(){ /* 컴포넌트가 DOM 생성 전에 실행 */
+    const contactData=localStorage.contactData;
+
+    if(contactData) {
+      this.setState({
+        contactData:JSON.parse(contactData)
+      })
+    }
+  }
+
+  componentDidUpdate(prevProps,prevState){ /* state 가 업데이트 되었을 때 */
+    if(JSON.stringify(prevState.contactData)!=JSON.stringify(this.state.contactData)){
+      localStorage.contactData=JSON.stringify(this.state.contactData);
+    }
+
+  }
+
+
+
   _handleChange(e){
     this.setState({
       keyword:e.target.value
