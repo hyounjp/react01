@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ContactInfo from './ContactInfo.js';
 import ContactDetails from './ContactDetails.js';
+import ContactCreate  from './ContactCreate.js';
 import update from 'react-addons-update'
 
 export default class Contact extends Component {
@@ -37,6 +38,8 @@ export default class Contact extends Component {
       keyword:e.target.value
     });
   }
+
+
 
   _handleClick(key){
     this.setState({
@@ -110,6 +113,8 @@ export default class Contact extends Component {
         <ContactDetails
           isSelected={this.state.selectedKey!=-1}
           contact={this.state.contactData[this.state.selectedKey]}/>
+        <ContactCreate
+          onCreate={this._handleCreate}/>
       </div>
     );
   }
