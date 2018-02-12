@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 export default class ContactDetails extends Component {
 
+
   render(){
 
     const details =(
@@ -16,6 +17,8 @@ export default class ContactDetails extends Component {
       <div>
         <h1>Details</h1>
         {this.props.isSelected ? details : blank}
+        <button>edit</button>
+        <button onClick={this.props.onRemove}>remove</button>
       </div>
 
     )
@@ -27,5 +30,6 @@ ContactDetails.defaultProps={
   contact :{
     name:'',
     phone:''
-  }
+  },
+  onRemove: ()=>{ console.error('onRemove not defined')}
 }
