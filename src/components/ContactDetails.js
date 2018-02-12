@@ -15,6 +15,7 @@ export default class ContactDetails extends Component {
     this._handleToggle=this._handleToggle.bind(this);
     this._handleChange=this._handleChange.bind(this);
     this._handleEdit=this._handleEdit.bind(this);
+    this._handleKeyPress=this._handleKeyPress.bind(this);
   }
 
 
@@ -48,6 +49,13 @@ export default class ContactDetails extends Component {
     this.setState(nextState);
   }
 
+  _handleKeyPress(e){
+    if(e.charCode===13){ /*enter key*/
+      this._handleToggle();
+    }
+
+  }
+
 
   render(){
 
@@ -77,6 +85,7 @@ export default class ContactDetails extends Component {
             placeholder="phone"
             value={this.state.phone}
             onChange={this._handleChange}
+            onKeyPress={this._handleKeyPress}
           />
         </p>
       </div>

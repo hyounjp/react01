@@ -11,6 +11,7 @@ export default class ContactCreate extends Component {
     }
     this._handleChange=this._handleChange.bind(this);
     this._handleClick=this._handleClick.bind(this);
+    this._handleKeyPress=this._handleKeyPress.bind(this);
   }
 
   _handleChange(e){
@@ -33,6 +34,12 @@ export default class ContactCreate extends Component {
 
   }
 
+  _handleKeyPress(e){
+    if(e.charCode===13){ /*enter key*/
+      this._handleClick();
+    }
+
+  }
 
   render(){
     return(
@@ -52,6 +59,7 @@ export default class ContactCreate extends Component {
           placeholder="phone"
           value={this.state.phone}
           onChange={this._handleChange}
+          onKeyPress={this._handleKeyPress}
           />
       </p>
       <button onClick={this._handleClick}>Create</button>
